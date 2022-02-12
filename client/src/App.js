@@ -1,24 +1,45 @@
 import logo from './logo.svg';
 import './App.css';
+import Navbar from "./component/Navbar";
+import Home from "./component/Posts";
+import Contact from "./component/Contact";
+import SignIn from "./component/SignIn";
+import SignUp from "./component/SignUp";
+import NewPost from "./component/NewPost"
+import Posts from "./component/Posts"
+
+import {
+  BrowserRouter as
+  Router,
+  Route,
+  Routes
+} from "react-router-dom"
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [user, setUser] = useState(null);
+  useEffect(()=> {
+    //auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, [])
+
+  if (!user) return <SignUp onLogin={setUser} />;
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-          Testing, does this thing work?
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <Router>
+        <Navbar user={user} setUser={setUser} />
+        <Routes>
+          <Route path="/" element={<><Home user = {user}/></>} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/new" element={<><NewPost user={user}/></>} />
+        </Routes>
+      </Router>
     </div>
   );
 }
