@@ -13,7 +13,7 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
- const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+ const settings = ['Profile', 'Account', 'Dashboard', 'Logout', 'ForNowThisMenuLogsYouOutAutomatically'];
 const Navbar = ({user, setUser}) => {
  
 
@@ -39,9 +39,7 @@ const Navbar = ({user, setUser}) => {
  };
   const handleCloseUserMenu = (e) => {
     setAnchorElUser(null);
-    if(e.target.value == "Logout"){
-      handleLogoutClick() 
-     }
+      handleLogoutClick();
   };
 
   return (
