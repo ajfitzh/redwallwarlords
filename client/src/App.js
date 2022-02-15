@@ -7,6 +7,8 @@ import SignIn from "./component/SignIn";
 import SignUp from "./component/SignUp";
 import NewPost from "./component/NewPost"
 import Posts from "./component/Posts"
+import Dashboard from "./component/Dashboard"
+import Friends from "./component/Friends"
 
 import {
   BrowserRouter as
@@ -14,7 +16,6 @@ import {
   Route,
   Routes
 } from "react-router-dom"
-import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -38,6 +39,8 @@ function App() {
           <Route path="/" element={<><Home user = {user}/></>} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/new" element={<><NewPost user={user}/></>} />
+          <Route path="/dashboard" element={<><Dashboard user={user}/></>} />
+          <Route path="/friends" element={<><Friends user={user}/></>} />
         </Routes>
       </Router>
     </div>

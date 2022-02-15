@@ -13,7 +13,7 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
- const settings = ['Profile', 'Account', 'Dashboard', 'Logout', 'ForNowThisMenuLogsYouOutAutomatically'];
+
 const Navbar = ({user, setUser}) => {
  
 
@@ -37,10 +37,13 @@ const Navbar = ({user, setUser}) => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
  };
-  const handleCloseUserMenu = (e) => {
+  const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-      handleLogoutClick();
   };
+
+  const handleClickNavMenu = (e) => {
+    console.log("Hi")
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -77,11 +80,9 @@ const Navbar = ({user, setUser}) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={(e) => handleCloseNavMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem as={Link} to="/dashboard" onClick={handleCloseUserMenu}>Dashboard</MenuItem>
+              <MenuItem as={Link} to="/friends" onClick={handleCloseUserMenu}>Friends</MenuItem>
+              <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>         
             </Menu>
             </> :
              

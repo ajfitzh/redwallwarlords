@@ -21,21 +21,19 @@ const Post = ({ post }) => {
         <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {post.user.avatar_url ? post.user.avatar_url : post.user.id}
-          </Avatar>
+          <Avatar src = {post.user.avatar_url ? post.user.avatar_url : post.user.id} />
         }
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title={post.title}
+        title={post.user.username}
         subheader={post.created_at}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {post.content}
+          {post.title}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
