@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import CommentSection from "./CommentSection"
 
 
-const PostPage = () => {
+const PostPage = ({user}) => {
     const { id } = useParams()
     const [blogpost, setBlogPost] = useState()
 
@@ -27,7 +27,7 @@ const PostPage = () => {
         />
         <h1>{blogpost.title}</h1>
         <p>{blogpost.content}</p>
-        <CommentSection/>
+        <CommentSection user={user} blogpost={blogpost}/>
         </div>
         : 
     <p> No Post Loaded</p>

@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     def show
       post = Post.find_by(id: params[:id])
       if post
-          render json: post
+          render json: post, include: ['user', 'comments.user']
       else
           render json: {error: "post not found" }, status: :not_found
       end
