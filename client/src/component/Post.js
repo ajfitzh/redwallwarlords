@@ -13,6 +13,8 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Button from '@mui/material/Button'
+import { Link } from "react-router-dom";
 
 
 const Post = ({ post }) => {
@@ -43,6 +45,11 @@ const Post = ({ post }) => {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
+        <Link to={`/posts/${post.id}`}>
+         <Button>
+          Read 
+        </Button>
+        </Link>
       </CardActions>
 
 
