@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import CardHeader from '@mui/material/CardHeader';
+import AddComment from "./AddComment"
 
 const bull = (
     <Box
@@ -45,6 +46,7 @@ const [comments, setComments] = useState()
         </Grid>
         )}
         </Grid>
+        <AddComment user={user}/>
     </div> 
     : 
     <p> No Comments Loaded</p>
