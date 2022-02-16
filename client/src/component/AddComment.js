@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const AddComment = ({ user }) => {
+const AddComment = ({ user, blogpost }) => {
     const [text, setText] = useState("I love Pogs.");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -21,21 +21,25 @@ const AddComment = ({ user }) => {
 
     const theme = createTheme();
 
+    const id = blogpost
 
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
         const data = new FormData(e.currentTarget);
         console.log({
-            text: data.get('text')
+            text: data.get('text'),
+            post_id: id
+            
         })
-        fetch("/comments/:id", {
+        fetch("../comments/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            text: data.get('text')
+            text: data.get('text'),
+            post_id: id
           }),
         }).then((r) => {
           setIsLoading(false);

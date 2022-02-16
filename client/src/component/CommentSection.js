@@ -46,7 +46,7 @@ const [comments, setComments] = useState()
         </Grid>
         )}
         </Grid>
-        <AddComment user={user}/>
+        <AddComment blogpost={blogpost.id} user={user}/>
     </div> 
     : 
     <p> No Comments Loaded</p>
