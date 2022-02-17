@@ -17,7 +17,10 @@ import Button from '@mui/material/Button'
 import { Link } from "react-router-dom";
 
 
+
 const Post = ({ post }) => {
+
+let date = new Date(post.created_at); 
   return (
         // Here's the Content of {post.user}'s Post {post.title}: {post.content} !
         <Card sx={{ maxWidth: 345 }}>
@@ -25,13 +28,8 @@ const Post = ({ post }) => {
         avatar={
           <Avatar src = {post.user.avatar_url ? post.user.avatar_url : post.user.id} />
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
         title={post.user.username}
-        subheader={post.created_at}
+        subheader={date.toString()}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
@@ -39,15 +37,9 @@ const Post = ({ post }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
         <Link to={`/posts/${post.id}`}>
          <Button>
-          Read 
+          Read Post
         </Button>
         </Link>
       </CardActions>

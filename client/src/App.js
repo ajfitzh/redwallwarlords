@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Navbar from "./component/Navbar";
-import Home from "./component/Posts";
+import Home from "./component/Home";
 import Contact from "./component/Contact";
 import SignIn from "./component/SignIn";
 import SignUp from "./component/SignUp";
