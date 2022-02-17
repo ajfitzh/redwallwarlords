@@ -12,7 +12,7 @@ const data = [
   createData('1990', 0),
   createData('1991', 5),
   createData('1992', 10),
-  createData('1993', 80000),
+  createData('1993', 8000),
   createData('1994', 500),
   createData('1995', 200),
   createData('1996', 80),
@@ -23,7 +23,7 @@ const data = [
   createData('2005', 10),
   createData('2010', 5),
   createData('2015', 1),
-  createData('2022', .1),
+  createData('2022', 200),
 ];
 
 export default function Chart() {

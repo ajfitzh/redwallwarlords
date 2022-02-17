@@ -35,7 +35,7 @@ export const mainListItems = (
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
-      <ListItemText primary="Popularity Trends" />
+      <ListItemText primary="Pogularity Trends" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
