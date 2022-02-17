@@ -29,7 +29,7 @@ let date = new Date(post.created_at);
           <Avatar src = {post.user.avatar_url ? post.user.avatar_url : post.user.id} />
         }
         title={post.user.username}
-        subheader={date.toString()}
+        subheader={date.toDateString()}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">

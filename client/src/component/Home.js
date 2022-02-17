@@ -12,7 +12,7 @@ const itemData = [
     title: 'Pogs',
   },
   {
-    img: 'https://preview.redd.it/51f9lrm1h6y11.jpg?auto=webp&s=3c922662bfda18957e43a5bf003b58d4bc5a90c8',
+    img: 'https://i.pinimg.com/736x/82/ef/9a/82ef9a15faa7cd7a815531e32222518a.jpg',
     title: 'Pogs',
   },
   {
@@ -20,7 +20,7 @@ const itemData = [
     title: 'Pog Solo',
   },
   {
-    img: 'https://media.adverts.ie/eyJidWNrZXQiOiJtZWRpYS5hZHNpbWcuY29tIiwia2V5IjoiMzAyZWJkMTA4NzUxM2U2MjAyN2ZkYTgwYTViNDQ0OWZiM2E1NmE0NTUxYTU3MzUyMmU5MWYzY2E1ODkyY2M3My5qcGciLCJvdXRwdXRGb3JtYXQiOiJqcGVnIiwiZWRpdHMiOnsicmVzaXplIjp7ImhlaWdodCI6NjAwfX19?signature=68ea0c3e67b499e4e369b7ecacb5608947f6f4d3cd97b79589d3f61577245a1f',
+    img: 'https://i.ebayimg.com/images/g/bowAAOSwV0xfGee1/s-l640.jpg',
     title: 'Simpson Pogs',
   },
   {
@@ -31,11 +31,14 @@ const itemData = [
 const Home = () => {
   return (
     <div>
-      <div id= "welcome">
+      <div id= "welcome" >
         <h2>Welcome to Pog Blogs</h2>
         <p>Are you in a fog? Are you tired of the smog? Do you have a naughty dog? Are you out of grog? Escape your worries with a pog-blog! Blog about your Pogs! Look at other pog-blogs! Connect with other pog-bloggers and escape from the bog! Read about pogs on logs, pogs of frogs, pogs in a cog and even pogs on a jog! So quit slog and blog about your pogs!</p>
       </div>
-      <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+      <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164} style={{
+        position: 'absolute', left: '50%', top: '50%',
+        transform: 'translate(-50%, -50%)'
+      }}>
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
             <img

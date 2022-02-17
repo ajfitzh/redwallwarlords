@@ -18,8 +18,7 @@ function Copyright(props) {
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
         <Link color="inherit" href="https://mui.com/">
-          Your Website
-        </Link>{' '}
+Pogs Pogs Pogs        </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
       </Typography>
@@ -102,7 +101,7 @@ const NewPost = ({ user }) => {
                 type="content"
                 id="content"
                 autoComplete="content"
-              />
+                />
             </Grid>
           </Grid>
           <Button

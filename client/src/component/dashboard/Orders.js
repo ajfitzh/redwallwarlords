@@ -6,6 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './Title';
+import { Avatar } from '@mui/material';
 
 // Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount) {
@@ -78,8 +79,8 @@ export default function Orders() {
           ))}
         </TableBody>
       </Table>
-      <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-        See more of your Pogs
+      <Link color="primary" onClick={preventDefault} sx={{ mt: 3 }}>
+        See more of your Pogs          
       </Link>
     </React.Fragment>
   );

@@ -10,7 +10,7 @@ function preventDefault(event) {
 export default function Deposits() {
   return (
     <React.Fragment>
-      <Title>PogFolio Value</Title>
+      <Title>Current Value</Title>
       <Typography component="p" variant="h4">
         $24.33
       </Typography>
@@ -18,6 +18,7 @@ export default function Deposits() {
         as of 18 Feb, 2022
       </Typography>
       <div>
+      <Title>Your Profit</Title>
       <Typography component="p" variant="h4" color="red">
         $-30,723.42
       </Typography>
