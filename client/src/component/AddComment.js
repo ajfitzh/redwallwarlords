@@ -44,7 +44,8 @@ const AddComment = ({ user, blogpost }) => {
         }).then((r) => {
           setIsLoading(false);
           if (r.ok) {
-            navigate("/");
+            navigate(`/posts/${id}`);
+            window.location.reload();
           } else {
             r.json().then((err) => setErrors(err.errors));
           }

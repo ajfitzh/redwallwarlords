@@ -7,7 +7,7 @@ import SignIn from "./component/SignIn";
 import SignUp from "./component/SignUp";
 import NewPost from "./component/NewPost"
 import Posts from "./component/Posts"
-import Dashboard from "./component/Dashboard"
+import Dashboard from "./component/dashboard/Dashboard"
 import Friends from "./component/Friends"
 import PostPage from "./component/PostPage"
 
