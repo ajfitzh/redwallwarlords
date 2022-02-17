@@ -30,13 +30,13 @@ const itemData = [
 ];
 const Home = () => {
   return (
-    <div>
+    <div id= "home">
       <div id= "welcome" >
         <h2>Welcome to Pog Blogs</h2>
         <p>Are you in a fog? Are you tired of the smog? Do you have a naughty dog? Are you out of grog? Escape your worries with a pog-blog! Blog about your Pogs! Look at other pog-blogs! Connect with other pog-bloggers and escape from the bog! Read about pogs on logs, pogs of frogs, pogs in a cog and even pogs on a jog! So quit slog and blog about your pogs!</p>
       </div>
-      <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164} style={{
-        position: 'absolute', left: '50%', top: '50%',
+      <ImageList id = "photoGrid" sx={{ width: 500, height: 450 }} cols={3} rowHeight={164} style={{
+        position: 'absolute', left: '50%', top: '75%',
         transform: 'translate(-50%, -50%)'
       }}>
         {itemData.map((item) => (

@@ -19,29 +19,36 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton href="https://www.ebay.com/sch/i.html?_nkw=vintage+pogs&_sop=12">
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
       <ListItemText primary="Buy More Pogs" />
+      {/* link to buy more pogs:
+      https://www.ebay.com/sch/i.html?_nkw=vintage+pogs&_sop=12 */}
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="PogPraisals" />
+      {/* Link to most expensive pogs sold
+      https://www.ranker.com/list/valuable-collectible-pogs/mick-jacobs */}
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Pogularity Trends" />
+      {/* Link to google trends for since 2004 for pogs
+      https://trends.google.com/trends/explore?date=all&geo=US&q=pogs */}
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <CurrencyExchangeIcon />
       </ListItemIcon>
       <ListItemText primary="Convert To CryptoPog" />
+      {/* model here */}
     </ListItemButton>
   </React.Fragment>
 );
