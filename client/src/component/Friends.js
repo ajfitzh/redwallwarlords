@@ -21,7 +21,10 @@ const Friends = ({ user }) => {
         friends.map((friend) => (
          
            <Grid item xs={2} sm={4} md={4} key={friend.id}>
-             <Friend key={friend.id} user={user} friend={friend}/>
+             <Link to={`/friends/${friend.id}`}>
+               <Friend key={friend.id} user={user} friend={friend}/>
+             </Link>
+             
            </Grid>
          
         )))

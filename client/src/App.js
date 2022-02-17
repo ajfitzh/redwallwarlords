@@ -10,6 +10,7 @@ import Posts from "./component/Posts"
 import Dashboard from "./component/dashboard/Dashboard"
 import Friends from "./component/Friends"
 import PostPage from "./component/PostPage"
+import FriendPage from "./component/FriendPage"
 
 
 import {
@@ -39,6 +40,7 @@ function App() {
         <Navbar user={user} setUser={setUser} />
         <Routes>
           <Route path='posts/:id' element={<><PostPage user={user} /></>} />
+          <Route path='friends/:id' element={<FriendPage user={user} />} />
           <Route path="/" element={<><Home user = {user}/></>} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/new" element={<><NewPost user={user}/></>} />
