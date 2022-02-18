@@ -10,6 +10,8 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import { Link } from "react-router-dom";
+
 
 export const mainListItems = (
   <React.Fragment>
@@ -19,31 +21,25 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
-    <ListItemButton href="https://www.ebay.com/sch/i.html?_nkw=vintage+pogs&_sop=12">
+    <ListItemButton button component="a" href="https://www.ebay.com/sch/i.html?_nkw=vintage+pogs&_sop=12" target="_blank">
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
       <ListItemText primary="Buy More Pogs" />
-      {/* link to buy more pogs:
-      https://www.ebay.com/sch/i.html?_nkw=vintage+pogs&_sop=12 */}
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton button component="a" href="https://www.ranker.com/list/valuable-collectible-pogs/mick-jacobs" target="_blank">
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="PogPraisals" />
-      {/* Link to most expensive pogs sold
-      https://www.ranker.com/list/valuable-collectible-pogs/mick-jacobs */}
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton button component="a" href="https://trends.google.com/trends/explore?date=all&geo=US&q=pogs" target="_blank">
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Pogularity Trends" />
-      {/* Link to google trends for since 2004 for pogs
-      https://trends.google.com/trends/explore?date=all&geo=US&q=pogs */}
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton button component="a" href="https://www.pogcoin.gg/buy" target="_blank">
       <ListItemIcon>
         <CurrencyExchangeIcon />
       </ListItemIcon>
