@@ -57,7 +57,7 @@ const NewPost = ({ user }) => {
         }).then((r) => {
           setIsLoading(false);
           if (r.ok) {
-            navigate("/");
+            navigate("/blogs");
           } else {
             r.json().then((err) => setErrors(err.errors));
           }

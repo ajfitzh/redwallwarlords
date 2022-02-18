@@ -44,7 +44,6 @@ export const mainListItems = (
         <CurrencyExchangeIcon />
       </ListItemIcon>
       <ListItemText primary="Convert To CryptoPog" />
-      {/* model here */}
     </ListItemButton>
   </React.Fragment>
 );

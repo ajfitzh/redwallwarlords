@@ -19,7 +19,12 @@ const bull = (
   );
 
 const CommentSection = ({user, blogpost }) => {
-const [comments, setComments] = useState()
+const [comments, setComments] = useState([])
+
+function CommentAdded(data) {
+  console.log(data)  
+  setComments(...comments, data);
+  };
 
     useEffect(() => {
         // console.log(blogpost.comments[0].user.username)
@@ -46,7 +51,7 @@ const [comments, setComments] = useState()
         </Grid>
         )}
         </Grid>
-        <AddComment blogpost={blogpost.id} user={user}/>
+        <AddComment blogpost={blogpost.id} user={user} CommentAdded={CommentAdded}/>
     </div> 
     : 
     <p> No Comments Loaded</p>

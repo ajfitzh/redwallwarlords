@@ -37,7 +37,7 @@ let date = new Date(post.created_at);
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <Link to={`/posts/${post.id}`}>
+        <Link to={`/blogs/${post.id}`}>
          <Button>
           Read Post
         </Button>

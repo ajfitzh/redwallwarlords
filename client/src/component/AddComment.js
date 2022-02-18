@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const AddComment = ({ user, blogpost }) => {
+const AddComment = ({ user, blogpost, CommentAdded }) => {
     const [text, setText] = useState("I love Pogs.");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +27,7 @@ const AddComment = ({ user, blogpost }) => {
         e.preventDefault();
         setIsLoading(true);
         const data = new FormData(e.currentTarget);
+        setText(data.get('text'));
         console.log({
             text: data.get('text'),
             post_id: id
@@ -44,7 +45,9 @@ const AddComment = ({ user, blogpost }) => {
         }).then((r) => {
           setIsLoading(false);
           if (r.ok) {
-            navigate(`/posts/${id}`);
+            // const text = e.currentTarget.get('text');
+            CommentAdded(data.get('text'));
+            navigate(`/blogs/${id}`);
             window.location.reload();
           } else {
             r.json().then((err) => setErrors(err.errors));
