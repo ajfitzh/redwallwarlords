@@ -1,0 +1,2 @@
+class WarlordsController < ApplicationController
+end

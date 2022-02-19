@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :password_digest
       t.string :avatar_url
       t.string :bio
+      t.integer :warlord_id
 
       t.timestamps
     end

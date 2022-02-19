@@ -52,7 +52,6 @@ const Navbar = ({user, setUser}) => {
           {/* <Button as={Link} to="/" color="inherit">Home </Button>
           <Button as={Link} to="/blogs" color="inherit"> Posts </Button>
           <Button as={Link} to="/new" color="inherit"> Create Post </Button> */}
-          
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Redwall: Warlords
             </Typography>

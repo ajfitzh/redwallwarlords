@@ -9,7 +9,21 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import ConstructionIcon from '@mui/icons-material/Construction';
+import ExploreIcon from '@mui/icons-material/Explore';
+import BuildIcon from '@mui/icons-material/Build';
+import CarpenterIcon from '@mui/icons-material/Carpenter';
+import SearchIcon from '@mui/icons-material/Search';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
+import AgricultureIcon from '@mui/icons-material/Agriculture';
+import AlbumIcon from '@mui/icons-material/Album';
+import ShieldIcon from '@mui/icons-material/Shield';
+import LogoutIcon from '@mui/icons-material/Logout';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { Link } from "react-router-dom";
 
 {/* <ListItemButton button component="a" href="https://www.ebay.com/sch/i.html?_nkw=vintage+pogs&_sop=12" target="_blank"> */}
@@ -25,13 +39,13 @@ export const information = (
     </ListItemButton>
     <ListItemButton >
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <AutoStoriesIcon />
       </ListItemIcon>
       <ListItemText primary="Scores" />
     </ListItemButton>
     <ListItemButton >
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <SearchIcon />
       </ListItemIcon>
       <ListItemText primary="Search" />
     </ListItemButton>
@@ -44,19 +58,19 @@ export const useturns = (
     </ListSubheader>
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <AgricultureIcon />
       </ListItemIcon>
       <ListItemText primary="Earn, Forage, or Loot" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <ExploreIcon />
       </ListItemIcon>
       <ListItemText primary="Scout" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <ConstructionIcon />
       </ListItemIcon>
       <ListItemText primary="Construct" />
     </ListItemButton>
@@ -70,19 +84,19 @@ export const finances = (
     </ListSubheader>
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <AttachMoneyIcon />
       </ListItemIcon>
       <ListItemText primary="Mercenaries" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <StorefrontIcon />
       </ListItemIcon>
       <ListItemText primary="Market" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <AccountBalanceIcon />
       </ListItemIcon>
       <ListItemText primary="Cluny's Hut" />
     </ListItemButton>
@@ -92,23 +106,23 @@ export const finances = (
 export const diplomacy = (
   <React.Fragment>
     <ListSubheader component="div" inset>
-      Saved reports
+      Diplomacy
     </ListSubheader>
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <ShieldIcon />
       </ListItemIcon>
       <ListItemText primary="Clans / Aid" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <LocalFireDepartmentIcon />
       </ListItemIcon>
       <ListItemText primary="Warlord's Hut" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <AutoAwesomeIcon />
       </ListItemIcon>
       <ListItemText primary="General's Hut" />
     </ListItemButton>
@@ -127,7 +141,7 @@ export const management = (
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <LogoutIcon />
       </ListItemIcon>
       <ListItemText primary="Logout" />
     </ListItemButton>
