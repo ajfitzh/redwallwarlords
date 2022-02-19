@@ -39,13 +39,7 @@ function App() {
       <Router>
         <Navbar user={user} setUser={setUser} />
         <Routes>
-          <Route path='blogs/:id' element={<><PostPage user={user} /></>} />
-          <Route path='friends/:id' element={<FriendPage user={user} />} />
-          <Route path="/" element={<><Home user = {user}/></>} />
-          <Route path="/blogs" element={<Posts />} />
-          <Route path="/new" element={<><NewPost user={user}/></>} />
-          <Route path="/dashboard" element={<><Dashboard user={user}/></>} />
-          <Route path="/friends" element={<><Friends user={user}/></>} />
+          <Route path="/" element={<><Dashboard user = {user}/></>} />
           
         </Routes>
       </Router>

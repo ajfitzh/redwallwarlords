@@ -12,43 +12,84 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import { Link } from "react-router-dom";
 
+{/* <ListItemButton button component="a" href="https://www.ebay.com/sch/i.html?_nkw=vintage+pogs&_sop=12" target="_blank"> */}
 
-export const mainListItems = (
+
+export const information = (
   <React.Fragment>
     <ListItemButton>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary="Summary" />
     </ListItemButton>
-    <ListItemButton button component="a" href="https://www.ebay.com/sch/i.html?_nkw=vintage+pogs&_sop=12" target="_blank">
+    <ListItemButton >
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
-      <ListItemText primary="Buy More Pogs" />
+      <ListItemText primary="Scores" />
     </ListItemButton>
-    <ListItemButton button component="a" href="https://www.ranker.com/list/valuable-collectible-pogs/mick-jacobs" target="_blank">
+    <ListItemButton >
       <ListItemIcon>
-        <PeopleIcon />
+        <ShoppingCartIcon />
       </ListItemIcon>
-      <ListItemText primary="PogPraisals" />
+      <ListItemText primary="Search" />
     </ListItemButton>
-    <ListItemButton button component="a" href="https://trends.google.com/trends/explore?date=all&geo=US&q=pogs" target="_blank">
+  </React.Fragment>
+);
+export const useturns = (
+  <React.Fragment>
+    <ListSubheader component="div" inset>
+     Use Turns
+    </ListSubheader>
+    <ListItemButton>
       <ListItemIcon>
-        <BarChartIcon />
+        <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Pogularity Trends" />
+      <ListItemText primary="Earn, Forage, or Loot" />
     </ListItemButton>
-    <ListItemButton button component="a" href="https://www.pogcoin.gg/buy" target="_blank">
+    <ListItemButton>
       <ListItemIcon>
-        <CurrencyExchangeIcon />
+        <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Convert To CryptoPog" />
+      <ListItemText primary="Scout" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Construct" />
     </ListItemButton>
   </React.Fragment>
 );
 
-export const secondaryListItems = (
+export const finances = (
+  <React.Fragment>
+    <ListSubheader component="div" inset>
+      Finances
+    </ListSubheader>
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Mercenaries" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Market" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Cluny's Hut" />
+    </ListItemButton>
+  </React.Fragment>
+);
+
+export const diplomacy = (
   <React.Fragment>
     <ListSubheader component="div" inset>
       Saved reports
@@ -57,19 +98,38 @@ export const secondaryListItems = (
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Current month" />
+      <ListItemText primary="Clans / Aid" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Last quarter" />
+      <ListItemText primary="Warlord's Hut" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Year-end Assessment" />
+      <ListItemText primary="General's Hut" />
+    </ListItemButton>
+  </React.Fragment>
+);
+export const management = (
+  <React.Fragment>
+    <ListSubheader component="div" inset>
+      Management
+    </ListSubheader>
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Manage Empire" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="Logout" />
     </ListItemButton>
   </React.Fragment>
 );

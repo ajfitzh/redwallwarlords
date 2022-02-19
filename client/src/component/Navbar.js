@@ -49,12 +49,12 @@ const Navbar = ({user, setUser}) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Button as={Link} to="/" color="inherit">Home </Button>
+          {/* <Button as={Link} to="/" color="inherit">Home </Button>
           <Button as={Link} to="/blogs" color="inherit"> Posts </Button>
-          <Button as={Link} to="/new" color="inherit"> Create Post </Button>
+          <Button as={Link} to="/new" color="inherit"> Create Post </Button> */}
           
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Pogs Pogs Pogs
+              Redwall: Warlords
             </Typography>
           
 
