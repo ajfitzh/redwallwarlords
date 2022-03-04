@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_19_021215) do
+ActiveRecord::Schema.define(version: 2022_03_03_012337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clans", force: :cascade do |t|
+    t.integer "member_id"
+    t.string "title"
+    t.string "abbreviation"
+    t.integer "ally"
+    t.integer "war"
+    t.string "banner_url"
+    t.string "motd"
+    t.string "password"
+    t.integer "founder_id"
+    t.integer "assistant"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string "text"
@@ -23,10 +38,39 @@ ActiveRecord::Schema.define(version: 2022_02_19_021215) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.integer "training"
+    t.integer "loyalty"
+    t.integer "scouting"
+    t.integer "workers"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "content"
     t.string "title"
     t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "races", force: :cascade do |t|
+    t.string "name"
+    t.integer "offense"
+    t.integer "defense"
+    t.integer "build"
+    t.integer "costs"
+    t.integer "loyalty"
+    t.integer "training"
+    t.integer "income"
+    t.integer "scouting"
+    t.integer "mercenaries"
+    t.integer "food"
+    t.integer "leadership"
+    t.integer "foraging"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -58,41 +102,41 @@ ActiveRecord::Schema.define(version: 2022_02_19_021215) do
     t.integer "newstime"
     t.integer "msgtime"
     t.integer "aidcred"
-    t.integer "bmperwatertrp"
-    t.integer "bmperflytrp"
-    t.integer "bmperlndtrp"
-    t.integer "bmperarmtrp"
+    t.integer "bmperskiff"
+    t.integer "bmperstoat"
+    t.integer "bmperweasel"
+    t.integer "bmperrat"
     t.integer "pmkt_food"
-    t.integer "pmkt_watertrp"
-    t.integer "pmkt_flytrp"
-    t.integer "pmkt_lndtrp"
-    t.integer "pmkt_armtrp"
+    t.integer "pmkt_skiff"
+    t.integer "pmkt_stoat"
+    t.integer "pmkt_weasel"
+    t.integer "pmkt_rat"
     t.integer "loan"
     t.integer "savings"
     t.integer "tax"
     t.integer "freeland"
     t.integer "towers"
     t.integer "farms"
-    t.integer "labs"
+    t.integer "huts"
+    t.integer "camps"
     t.integer "barracks"
-    t.integer "industry"
-    t.integer "homes"
-    t.integer "shop"
+    t.integer "tents"
+    t.integer "markets"
     t.integer "land"
-    t.integer "ind_watertrp"
-    t.integer "ind_flytrp"
-    t.integer "ind_lndtrp"
-    t.integer "ind_armtrp"
+    t.integer "ind_skiff"
+    t.integer "ind_stoat"
+    t.integer "ind_weasel"
+    t.integer "ind_rat"
     t.integer "gate"
     t.integer "shield"
-    t.integer "runes"
-    t.integer "wizards"
+    t.integer "loyalty"
+    t.integer "leaders"
     t.integer "health"
-    t.integer "watertrp"
-    t.integer "flytrp"
-    t.integer "ldntrp"
-    t.integer "armtrp"
-    t.integer "peasants"
+    t.integer "skiffs"
+    t.integer "stoats"
+    t.integer "weasels"
+    t.integer "rats"
+    t.integer "workers"
     t.integer "food"
     t.integer "cash"
     t.integer "networth"
@@ -115,7 +159,10 @@ ActiveRecord::Schema.define(version: 2022_02_19_021215) do
     t.string "notice"
     t.integer "location_id"
     t.integer "race_id"
-    t.string "warlord_name"
+    t.string "name"
+    t.integer "user_id"
+    t.integer "army_id"
+    t.string "coa_url"
     t.boolean "validated"
     t.boolean "online"
     t.boolean "vacation"

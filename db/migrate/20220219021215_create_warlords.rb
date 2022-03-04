@@ -10,41 +10,41 @@ class CreateWarlords < ActiveRecord::Migration[6.1]
       t.integer :newstime
       t.integer :msgtime
       t.integer :aidcred
-      t.integer :bmperwatertrp
-      t.integer :bmperflytrp
-      t.integer :bmperlndtrp
-      t.integer :bmperarmtrp
+      t.integer :bmperskiff
+      t.integer :bmperstoat
+      t.integer :bmperweasel
+      t.integer :bmperrat
       t.integer :pmkt_food
-      t.integer :pmkt_watertrp
-      t.integer :pmkt_flytrp
-      t.integer :pmkt_lndtrp
-      t.integer :pmkt_armtrp
+      t.integer :pmkt_skiff
+      t.integer :pmkt_stoat
+      t.integer :pmkt_weasel
+      t.integer :pmkt_rat
       t.integer :loan
       t.integer :savings
       t.integer :tax
       t.integer :freeland
       t.integer :towers
       t.integer :farms
-      t.integer :labs
+      t.integer :huts
+      t.integer :camps
       t.integer :barracks
-      t.integer :industry
-      t.integer :homes
-      t.integer :shop
+      t.integer :tents
+      t.integer :markets
       t.integer :land
-      t.integer :ind_watertrp
-      t.integer :ind_flytrp
-      t.integer :ind_lndtrp
-      t.integer :ind_armtrp
+      t.integer :ind_skiff
+      t.integer :ind_stoat
+      t.integer :ind_weasel
+      t.integer :ind_rat
       t.integer :gate
       t.integer :shield
-      t.integer :runes
-      t.integer :wizards
+      t.integer :loyalty
+      t.integer :leaders
       t.integer :health
-      t.integer :watertrp 
-      t.integer :flytrp
-      t.integer :ldntrp
-      t.integer :armtrp
-      t.integer :peasants
+      t.integer :skiffs 
+      t.integer :stoats
+      t.integer :weasels
+      t.integer :rats
+      t.integer :workers
       t.integer :food
       t.integer :cash
       t.integer :networth
@@ -67,7 +67,10 @@ class CreateWarlords < ActiveRecord::Migration[6.1]
       t.string :notice
       t.integer :location_id
       t.integer :race_id
-      t.string :warlord_name
+      t.string :name
+      t.integer :user_id
+      t.integer :army_id
+      t.string :coa_url
       t.boolean :validated
       t.boolean :online
       t.boolean :vacation

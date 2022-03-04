@@ -18,7 +18,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { management, diplomacy, finances, useturns, information } from './listItems';
-import Scores from './Scores';
+import Scores from '../dscores/Scores';
+import Home from "../Home"
 
 function Copyright(props) {
   return (
@@ -81,7 +82,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function DashboardContent({user }) {
+function DashboardContent({user, page }) {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -90,21 +91,22 @@ function DashboardContent({user }) {
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
+         <CssBaseline />
         <Drawer variant="permanent" open={open}>
           <Toolbar
             sx={{
+              position:'relative',
+              zIndex: 'tooltip',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-end',
-              px: [1],
+              px: [1]
             }}
           >
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>
           </Toolbar>
-          <Divider />
           <List component="nav">
             {information}
             {useturns}
@@ -121,22 +123,15 @@ function DashboardContent({user }) {
                 ? theme.palette.grey[100]
                 : theme.palette.grey[900],
             flexGrow: 1,
-            height: '00vh',
+            height: '100vh',
             overflow: 'auto',
+            padding:1
           }}
         >
-          <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Scores />
-                </Paper>
-            </Grid>
-            <Copyright sx={{ pt: 4 }} />
-          </Container>
+          <Home/>
+          <Copyright/>
         </Box>
-      </Box>
+</Box>
     </ThemeProvider>
   );
 }

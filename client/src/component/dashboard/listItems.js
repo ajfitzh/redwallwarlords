@@ -31,18 +31,22 @@ import { Link } from "react-router-dom";
 
 export const information = (
   <React.Fragment>
+    <Link to="/" style={{ textDecoration: 'none', color:'inherit' }}>
     <ListItemButton>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Summary" />
     </ListItemButton>
-    <ListItemButton >
+    </Link>
+    <Link to="/scores" style={{ textDecoration: 'none', color:'inherit' }}>
+      <ListItemButton >
       <ListItemIcon>
         <AutoStoriesIcon />
       </ListItemIcon>
       <ListItemText primary="Scores" />
-    </ListItemButton>
+      </ListItemButton>
+    </Link>
     <ListItemButton >
       <ListItemIcon>
         <SearchIcon />

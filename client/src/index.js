@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+export {default as SwordIcon } from './component/sword.svg'
 // import {
 //   BrowserRouter as
 //   Router,
