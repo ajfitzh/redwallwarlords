@@ -7,6 +7,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './dashboard/Title';
 import { Avatar } from '@mui/material';
+import { Card } from '@mui/material';
+import CardHeader from '@mui/material/CardHeader';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 // Generate Order Data
 function createData(id, rank, warlord, land, networth, clan,race,location) {
@@ -18,7 +21,7 @@ function preventDefault(event) {
 }
 
 
-export default function Scores() {
+export default function Scores({ user }) {
   const [warlords, setWarlords] = useState([]);
 
 useEffect(() => {
@@ -54,16 +57,42 @@ let counter = 1;
         </TableHead>
         <TableBody>
           {warlords.map((warlord, index) => (
-            <>
-              <TableRow key={warlord.id}>
-              <TableCell>{index+1}</TableCell>
-              <TableCell>{warlord.name} (#{warlord.id})<Avatar  sx={{ width: 24, height: 24 }} src={warlord.coa_url} /></TableCell>
+            (warlord.id == user.warlord.id) ?
+              <>
+              <TableRow key={warlord.id} style={{backgroundColor:'lightblue'}}>
+              <TableCell>{(index+1) == 1 ? <EmojiEventsIcon/> : <p></p>}{index+1}</TableCell>
+              <TableCell><CardHeader avatar={<Avatar src={warlord.coa_url}/>} title={index == 0 ? "Emperor" : ""} subheader={warlord.name}/> </TableCell>
               <TableCell>{warlord.land.toLocaleString()}</TableCell>
               <TableCell>${warlord.networth.toLocaleString()}</TableCell>
-              <TableCell>{warlord.clan.abbreviation} <Avatar  sx={{ width: 24, height: 24 }} src={warlord.clan.banner_url} /></TableCell>
+              <TableCell><CardHeader avatar={<Avatar src={warlord.clan.banner_url}/>} title={warlord.clan.abbreviation}/></TableCell>
               <TableCell>{warlord.race.name}</TableCell>
               <TableCell>{warlord.location.name}</TableCell>
             </TableRow>
+            </>
+            :
+            <>
+              {(warlord.id == 1) ? 
+              <TableRow key={warlord.id} style={{backgroundColor:'green'}}>
+              <TableCell>{(index+1) == 1 ? <EmojiEventsIcon/> : <p></p>}{index+1}</TableCell>
+              <TableCell><CardHeader avatar={<Avatar src={warlord.coa_url}/>} title={index == 0 ? "Emperor" : ""} subheader={warlord.name} />   </TableCell>
+              <TableCell>{warlord.land.toLocaleString()}</TableCell>
+              <TableCell>${warlord.networth.toLocaleString()}</TableCell>
+              <TableCell><CardHeader avatar={<Avatar src={warlord.clan.banner_url}/>} title={warlord.clan.abbreviation} /></TableCell>
+              <TableCell>{warlord.race.name}</TableCell>
+              <TableCell>{warlord.location.name}</TableCell>
+            </TableRow>
+            : 
+            <>
+            <TableRow key={warlord.id}>
+              <TableCell>{(index+1) == 1 ? <EmojiEventsIcon/> : <p></p>}{index+1}</TableCell>
+              <TableCell><CardHeader avatar={<Avatar src={warlord.coa_url}/>} title={index == 0 ? "Emperor" : ""} subheader={warlord.name}/>   </TableCell>
+              <TableCell>{warlord.land.toLocaleString()}</TableCell>
+              <TableCell>${warlord.networth.toLocaleString()}</TableCell>
+              <TableCell><CardHeader avatar={<Avatar src={warlord.clan.banner_url}/>} title={warlord.clan.abbreviation} /></TableCell>
+              <TableCell>{warlord.race.name}</TableCell>
+              <TableCell>{warlord.location.name}</TableCell>
+            </TableRow>
+            </>}
             </>
           ))}
         </TableBody>

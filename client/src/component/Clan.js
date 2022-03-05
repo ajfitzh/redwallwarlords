@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import PeopleIcon from '@mui/icons-material/People';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
+import { ButtonGroup } from '@mui/material';
 
 function Copyright(props) {
   return (
@@ -28,13 +29,27 @@ function Copyright(props) {
   );
 }
 
+
+
 const theme = createTheme();
 
 export default function Clan({user}) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [clans, setClans] = useState([])
   const navigate = useNavigate();
 
+  let clancounter = 1;
+
+  let clanid = 0;
+  useEffect(() => {
+    fetch("/clans")
+    .then((r) => r.json())
+    .then(setClans);    
+  }, []);
+  clans.map((clan, index) => {
+    clancounter++; 
+    console.log(clancounter)})
   function handleCreateSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
@@ -43,6 +58,7 @@ export default function Clan({user}) {
       founder_id: {user}.user.id,
       title: data.get('title'),
       abbreviation:data.get('abbreviation'),
+      banner_url:"https://cdn.imgbin.com/16/9/24/imgbin-red-fox-weasels-ferret-ferahgo-the-assassin-redwall-ferret-uhMyBcaWCsCVJ4dWAwJQxxgCL.jpg",
       password:data.get('password')
     })
     fetch("/clans", {
@@ -54,16 +70,36 @@ export default function Clan({user}) {
         founder_id: {user}.user.id,
         title: data.get('title'),
         abbreviation:data.get('abbreviation'),
-        password:data.get('password')
+        password:data.get('password'),
       }),
     }).then((r) => {
       if (r.ok) {
         setIsLoading(false);
-        navigate("/");
+        navigate("/summary");
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
     });
+    console.log("Clan ID: " )
+    console.log(clancounter)
+    fetch(`/warlords/${user.warlord.id}`, {
+      method: 'PATCH',
+      
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      clan_id: 5
+    }),
+  }).then((res) => {
+    if(res.ok){
+      res.json().then(console.log)
+      setErrors('Warlord Patched!')
+    } else {
+      res.json().then(console.log)
+      setErrors('Error: Patch unable to be sent')
+    }
+    })
   }
 
   function handleJoinSubmit(e) {
@@ -88,7 +124,7 @@ export default function Clan({user}) {
     }).then((r) => {
       if (r.ok) {
         setIsLoading(false);
-        navigate("/");
+        navigate("/summary");
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -166,17 +202,12 @@ export default function Clan({user}) {
           <Typography component="h1" variant="h5">
             Join Clan
           </Typography>
+          <Typography>Total Clans: {clancounter}</Typography>
+          
           <Box component="form" onSubmit={handleJoinSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="title"
-              label="Clan Title"
-              name="title"
-              autoComplete="title"
-              autoFocus
-            />
+            <ButtonGroup>
+              {clans.map((clan, index) => <Button key={index}>{clan.abbreviation}</Button>)}
+            </ButtonGroup>
             <TextField
               margin="normal"
               required

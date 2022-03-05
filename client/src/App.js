@@ -48,7 +48,8 @@ function App() {
       <Router>
         <Navbar user={user} setUser={setUser} />
         <Routes>
-          <Route path="/" element={<Home user={user} />} />
+          <Route path="/" element={<CreateWarlord user={user} />} />
+          <Route path="/summary" element={<Home user={user} />} />
           <Route path="/signin" element={<SignIn onLogin={setUser} />} />
           <Route path="/signup" element={<SignUp onLogin={setUser} />} />
           <Route path="/createwarlord" element={<CreateWarlord user={user}/> } />

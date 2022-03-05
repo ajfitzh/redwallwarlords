@@ -137,7 +137,7 @@ const Navbar = ({user, setUser}) => {
   let loyalty = 1543000;
   let food = 23000000;
   let health = 93;
-  let networth = (user.warlord? user.warlord.health * user.warlord.food * user.warlord.cash * user.warlord.land / 100000000000 : 0) 
+  let networth = (user.warlord? user.warlord.networth : 0) 
 
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -237,7 +237,7 @@ const Navbar = ({user, setUser}) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem><Link style={{ textDecoration: 'none' }} to="/messages">Messages ({messages})</Link></MenuItem>
+              {/* <MenuItem><Link style={{ textDecoration: 'none' }} to="/messages">Messages ({messages})</Link></MenuItem> */}
               <MenuItem><Link style={{ textDecoration: 'none' }} to="/manage">Manage</Link></MenuItem>
               <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>         
             </Menu>
@@ -257,7 +257,7 @@ const Navbar = ({user, setUser}) => {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
             >
-              <MenuItem onClick={handleCloseNavMenu}><Link style={{ textDecoration: 'none' }} to="/"><DashboardIcon />Summary</Link></MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}><Link style={{ textDecoration: 'none' }} to="/summary"><DashboardIcon />Summary</Link></MenuItem>
               <MenuItem onClick={handleCloseNavMenu}><Link style={{ textDecoration: 'none' }} to="/scores"><AutoStoriesIcon />Scores</Link></MenuItem>
               <MenuItem onClick={handleCloseNavMenu}><Link style={{ textDecoration: 'none' }} to="/search"><SearchIcon />Search</Link></MenuItem>
               <MenuItem onClick={handleCloseNavMenu}><Link style={{ textDecoration: 'none' }} to="/turns"><AgricultureIcon />Use Turns</Link></MenuItem>

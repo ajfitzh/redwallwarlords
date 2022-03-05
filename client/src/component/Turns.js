@@ -33,38 +33,22 @@ Redwall Warlords v2        </Link>{' '}
 const theme = createTheme();
 
 const Turns = ({ user}) => {
-  const [turns, setTurns] = useState();
+  const [turns, setTurns] = useState(0);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [turnuse, setTurnUse] = useState('');
   const [result, setResults] = useState(false);
+  const [newwarlorddata, setWarlord] = useState({})
   const navigate = useNavigate();
 
 
-function handleSubmit(e) {
-  e.preventDefault();
-  setResults(true);
-    fetch(`/warlords/${user.warlord.id}`, {
-      method: 'PATCH',
-    
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      // turns: turns
-    }),
-  }).then((res) => {
-    if(res.ok){
-      res.json().then(console.log)
-      setResults('Warlord Patched!')
-    } else {
-      res.json().then(console.log)
-      setErrors('Error: Turns Patch unable to be sent')
-    }
-    })
-}
-  function handleTurnsChange(e){
-    setTurnUse(e.target.value);
+  function handleSubmit(e) {
+    e.preventDefault();
+    setResults(true);
+  }
+
+  function handleWarlordChange(e){
+    setWarlord(e.target.value);
     console.log("turns changed!")
 }
 
@@ -88,10 +72,10 @@ function handleInputChange(e){
         <Typography component="h1" variant="h5">
           Use Turns
         </Typography>
-        {result ? <TakeTurn turns={turns} user={user} /> : <p>Turn Results Shown Here</p>}
+        {result ? <TakeTurn turns={turns} user={user} action={turnuse} warlord={user.warlord}/> : <p>Turn Results Shown Here</p>}
         
         <Typography component="h2" variant="h6">
-          You have: {(user.warlord.turns) ? user.warlord.turns : null} turns left.
+          You have: {(user.warlord) ? (user.warlord.turns-turns) : null} turns left after this action.
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -99,10 +83,10 @@ function handleInputChange(e){
               <Typography> How Do You Want To Use Your Turns?: {turnuse} </Typography>
             <Grid item xs={12}>
             <ButtonGroup variant="outlined" aria-label="outlined button group">
-                <Button onClick={()=> { setTurnUse(1)}}>Forage (1)</Button>
-                <Button onClick={()=> { setTurnUse(2)}}>Scout (2)</Button>
-                <Button onClick={()=> { setTurnUse(3)}}>Earn Loyalty (3)</Button>
-                <Button onClick={()=> { setTurnUse(4)}}>Loot (4)</Button>
+                <Button key={1} onClick={()=> { setTurnUse(1)}}>Scout (1)</Button>
+                <Button key={2} onClick={()=> { setTurnUse(2)}}>Loot (2)</Button>
+                <Button key={3} onClick={()=> { setTurnUse(3)}}>Forage (3)</Button>
+                <Button key={4} onClick={()=> { setTurnUse(4)}}>Earn Loyalty (4)</Button>
             </ButtonGroup>
             </Grid>
             <Grid item xs={12}>
@@ -114,8 +98,8 @@ function handleInputChange(e){
                 type="turns"
                 id="turns"
                 autoComplete="turns"
-                // onChange={handleInputChange}
-                // value={turns}
+                onChange={handleInputChange}
+                value={turns}
                 />
                 </Grid>
             </Grid>

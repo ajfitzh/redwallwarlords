@@ -78,6 +78,7 @@ const CreateWarlord = ({ user }) => {
             clan_id: 1,
             land: 1000,
             freeland: 1000,
+            networth:625867,
             turns: 350,
             loyalty: 50000,
             leaders: 1000,
@@ -106,7 +107,8 @@ const CreateWarlord = ({ user }) => {
           setIsLoading(false);
           if (r.ok) {
             r.json().then((r) => console.log(r));
-            navigate("/");
+            navigate("/summary");
+            
           } else {
             r.json().then((err) => setErrors(err.errors));
           }
