@@ -64,7 +64,7 @@ let counter = 1;
               <TableCell><CardHeader avatar={<Avatar src={warlord.coa_url}/>} title={index == 0 ? "Emperor" : ""} subheader={warlord.name}/> </TableCell>
               <TableCell>{warlord.land.toLocaleString()}</TableCell>
               <TableCell>${warlord.networth.toLocaleString()}</TableCell>
-              <TableCell><CardHeader avatar={<Avatar src={warlord.clan.banner_url}/>} title={warlord.clan.abbreviation}/></TableCell>
+              <TableCell><CardHeader avatar={<Avatar src={(warlord.clan.id != 1) ? "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fae01.alicdn.com%2Fkf%2FHLB1.cYTbjzuK1RjSsppq6xz0XXaT%2FThe-King-of-Scots-Scottish-Royal-Flag-Banner-Royal-Standard-of-Scotland-Flag-Banner-New-3x5ft.jpg&f=1&nofb=1" : ""}/>} title={warlord.clan.abbreviation}/></TableCell>
               <TableCell>{warlord.race.name}</TableCell>
               <TableCell>{warlord.location.name}</TableCell>
             </TableRow>

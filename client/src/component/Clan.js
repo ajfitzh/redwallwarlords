@@ -37,19 +37,23 @@ export default function Clan({user}) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [clans, setClans] = useState([])
+  const [clanjoin,setClanJoin] = useState('5')
   const navigate = useNavigate();
 
-  let clancounter = 1;
+  let clancounter = 0;
 
+ 
   let clanid = 0;
   useEffect(() => {
     fetch("/clans")
     .then((r) => r.json())
     .then(setClans);    
   }, []);
+
   clans.map((clan, index) => {
     clancounter++; 
-    console.log(clancounter)})
+    })
+
   function handleCreateSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
@@ -70,18 +74,16 @@ export default function Clan({user}) {
         founder_id: {user}.user.id,
         title: data.get('title'),
         abbreviation:data.get('abbreviation'),
-        password:data.get('password'),
-      }),
+        password:data.get('password') }),
+        banner_url: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fskjalden.com%2Fwp-content%2Fuploads%2F2018%2F10%2Fraven-banner.jpg&f=1&nofb=1"
     }).then((r) => {
       if (r.ok) {
         setIsLoading(false);
-        navigate("/summary");
+        r.json().then((r)=>console.log(r))
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
-    });
-    console.log("Clan ID: " )
-    console.log(clancounter)
+    })
     fetch(`/warlords/${user.warlord.id}`, {
       method: 'PATCH',
       
@@ -89,7 +91,7 @@ export default function Clan({user}) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      clan_id: 5
+      clan_id: (clanjoin)
     }),
   }).then((res) => {
     if(res.ok){
@@ -99,35 +101,30 @@ export default function Clan({user}) {
       res.json().then(console.log)
       setErrors('Error: Patch unable to be sent')
     }
-    })
-  }
+    })}
+
 
   function handleJoinSubmit(e) {
     e.preventDefault();
-    setIsLoading(true);
-    const data = new FormData(e.currentTarget);
-    console.log({
-      member_id: {user},
-      title: data.get('title'),
-      password:data.get('password')
-    })
-    fetch("/clans", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        member_id: {user}.user.id,
-        title: data.get('title'),
-        password:data.get('password')
-      }),
-    }).then((r) => {
-      if (r.ok) {
-        setIsLoading(false);
-        navigate("/summary");
-      } else {
-        r.json().then((err) => setErrors(err.errors));
-      }
+    console.log(clanjoin+1)
+    fetch(`/warlords/${user.warlord.id}`, {
+      method: 'PATCH',
+      
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      clan_id: (clanjoin+1)
+    }),
+  }).then((res) => {
+    if(res.ok){
+      res.json().then(console.log)
+      setErrors('Warlord Patched!')
+      // navigate("/summary");
+    } else {
+      res.json().then(console.log)
+      setErrors('Error: Patch unable to be sent')
+    }
     });
   }
 
@@ -200,13 +197,13 @@ export default function Clan({user}) {
             <PeopleIcon/>
           </Avatar>
           <Typography component="h1" variant="h5">
-            Join Clan
+            Join Clan {clanjoin}
           </Typography>
           <Typography>Total Clans: {clancounter}</Typography>
           
           <Box component="form" onSubmit={handleJoinSubmit} noValidate sx={{ mt: 1 }}>
             <ButtonGroup>
-              {clans.map((clan, index) => <Button key={index}>{clan.abbreviation}</Button>)}
+              {clans.map((clan, index) => <Button onClick={()=>setClanJoin(index)} key={index}>{clan.abbreviation}</Button>)}
             </ButtonGroup>
             <TextField
               margin="normal"

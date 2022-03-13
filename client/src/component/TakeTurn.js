@@ -11,14 +11,17 @@ import { Typography } from '@mui/material';
 import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import { Grid } from '@mui/material';
+import Construct from './Construct';
 
 
 
-const TakeTurn = ({turns, user, action, warlord}) => {
+const TakeTurn = ({turns, user, action, warlord, newmarkets, newtents, newbarracks, newcamps, newhuts, newforagers, newtowers}) => {
 const [results, setResults] = useState([])
 const [errors, setErrors] = useState([])
+
     function patchWarlord() {
         let newturns = warlord.turns - turns;
+        
           fetch(`/warlords/${user.warlord.id}`, {
             method: 'PATCH',
             
@@ -33,13 +36,20 @@ const [errors, setErrors] = useState([])
             weasels: user.warlord.weasels + totalweasels,
             stoats: user.warlord.stoats + totalstonks,
             skiffs: user.warlord.skiffs + totalskonks,
-            land: user.warlord.land + totallandgain,
-            freeland: user.warlord.freeland + totallandgain,
+            land: Number(user.warlord.land + totallandgain),
+            freeland: freelandupdate,
             loyalty: user.warlord.loyalty + totalloyaltonks,
             leaders: user.warlord.leaders + totallonks,
             workers: user.warlord.workers + popgained,
-            networth: user.warlord.health * (user.warlord.food+foodgained) * (user.warlord.cash + cashgained) * (user.warlord.land + totallandgain) / 1000000000
-          }),
+            networth: Math.abs((user.warlord.food+foodgained) * (user.warlord.cash + cashgained) * (user.warlord.land + totallandgain) / 10000000),
+            markets: Number(user.warlord.markets) + Number(newmarkets),
+            tents: Number(user.warlord.tents) + Number(newtents),
+            barracks: Number(user.warlord.barracks) + Number(newbarracks),
+            camps: Number(user.warlord.camps) + Number(newcamps),
+            huts: Number(user.warlord.huts) + Number(newhuts),
+            farms: Number(user.warlord.farms) + Number(newforagers),
+            towers: Number(user.warlord.towers) + Number(newtowers),
+        }),
         }).then((res) => {
           if(res.ok){
             res.json().then(console.log)
@@ -70,6 +80,7 @@ const [errors, setErrors] = useState([])
     let totalfoodconsumption = 0;
     let totalfood = 0;
     let foodgained = 0;
+    let freelandupdate = 0;
 
     let workers, leaders, loyalty, rats, weasels, totalweasels = 0;
     let stoats, skiffs, totalloyalty = 0;
@@ -108,7 +119,7 @@ const [errors, setErrors] = useState([])
         }
         //Income Section
         ///round(((25*1(markets/land ( racialbonus) * taxrate * health * workers * markets * 500/size))))
-        income = 25;
+        income = 35 * (user.warlord.markets ? user.warlord.markets : 1);
         if(action == 2){
             income = Math.round(income*1.25);
         }
@@ -118,7 +129,7 @@ const [errors, setErrors] = useState([])
         ///expenses = Math.round((rat*1) + (weasels * 2.5) + (stoats * 4) + (skiffs * 7) + (land *  8) + (leaders * 0.5) + (food * 0.01))
         ///add in expensesbonus = (1-racialcostbonus) + (camps/land)
         /// if (expensesbonus > 0.5) {expensesbonus = 0.5}
-        expenses= 10;
+        expenses= (10 * Math.floor((user.warlord.rats + user.warlord.stoats + user.warlord.weasels + user.warlord.skiffs)/100));
         totalexpenses += expenses;
 
         //Net Income
@@ -127,26 +138,26 @@ const [errors, setErrors] = useState([])
         // warlord.cash += money;
 
         //Build units
-        rats = 25;
+        rats = 25 * (user.warlord.barracks ? user.warlord.barracks : 1);
         totalbonks += rats;
-        weasels = 25;
+        weasels = 25 * (user.warlord.barracks ? user.warlord.barracks : 1);
         // warlord.weasels += weasels;
         totalweasels += weasels;
-        stoats = 10;
+        stoats = 10 * (user.warlord.barracks ? user.warlord.barracks : 1);
         // warlord.stoats += stoats;
         totalstonks += stoats;
-        skiffs = 5;
+        skiffs = 5 * (user.warlord.barracks ? user.warlord.barracks : 1);
         // warlord.skiffs += skiffs;
         totalskonks += skiffs;
-        leaders = 20;
+        leaders = 20 * (user.warlord.huts ? user.warlord.huts : 1);
         // warlord.leaders += leaders;
         totallonks += leaders;
 
 
         //update Food production
-        foodproduction = 50;
+        foodproduction = 65 * (user.warlord.farms ? user.warlord.farms : 1);
         
-        foodconsumption = 30;
+        foodconsumption = ((10+(30 * Math.floor((user.warlord.rats + user.warlord.stoats + user.warlord.weasels + user.warlord.skiffs)/500))));
         totalfoodconsumption += foodconsumption;
         if(action === 3) {
             foodproduction = foodproduction * 1.25
@@ -162,7 +173,7 @@ const [errors, setErrors] = useState([])
         }
         //Add Taxes (not implemented yet)
         //Update Population
-        popbase = 500;
+        popbase = 500 + (user.warlord.tents ? user.warlord.tents : 1);
         popgained += popbase;
         //Check to make sure population doesn't outgrow land (not implemented yet)
         
@@ -175,24 +186,34 @@ const [errors, setErrors] = useState([])
         totalloyaltonks += loyalty;
         //Add Wizards function (not implemented yet)
         //Send PATCH to server
-        
+        console.log("Turns Used:")
+        console.log(turns)
+        if(action===1) {
+             freelandupdate = Number(user.warlord.freeland + totallandgain)
+            }
+        else{
+            freelandupdate = Number(user.warlord.land - newtowers - newforagers 
+            - newhuts - newcamps - newbarracks
+            - newtents - newmarkets)
+        };
     }
     
         
     return (
     <React.Fragment>
+        <Typography variant='h5'> After {turns} turns spent...</Typography>
     <Grid container spacing={2}>
     <Grid item xs={4}>
                <Table size="small">
                    <TableHead>Economic Status</TableHead>
                    <TableRow>
-                       <TableCell>Income: ${totalincome.toLocaleString()}</TableCell>
+                       <TableCell>Income: <Typography variant='h7' style={{color:'green'}}>+${totalincome.toLocaleString()}</Typography></TableCell>
                    </TableRow>
                    <TableRow>
-                       <TableCell>Expenses: ${totalexpenses.toLocaleString()}</TableCell>
+                       <TableCell>Expenses: <Typography variant='h7' style={{color:'red'}}>-${totalexpenses.toLocaleString()}</Typography></TableCell>
                     </TableRow>    
                     <TableRow>
-                        <TableCell>Net: <Typography variant='h7' style={{color: 'green'}}>+${cashgained.toLocaleString()}</Typography></TableCell> 
+                        <TableCell>Net: <Typography variant='h7' >${cashgained.toLocaleString()}</Typography></TableCell> 
                     </TableRow>
                 </Table> 
         </Grid>
@@ -200,13 +221,13 @@ const [errors, setErrors] = useState([])
                <Table size="small">
                    <TableHead>Agricultural Status</TableHead>
                    <TableRow>
-                       <TableCell>Produced: {totalfoodproduction.toLocaleString()}</TableCell>
+                       <TableCell>Produced: <Typography variant='h7' style={{color:'green'}}>+{totalfoodproduction.toLocaleString()}</Typography></TableCell>
                    </TableRow>
                    <TableRow>
-                       <TableCell>Consumed: {totalfoodconsumption.toLocaleString()}</TableCell>
+                       <TableCell>Consumed: <Typography variant='h7' style={{color:'red'}}>-{totalfoodconsumption.toLocaleString()}</Typography></TableCell>
                     </TableRow>    
                     <TableRow>
-                        <TableCell>Net: <Typography variant='h7' style={{color: 'green'}}>+{foodgained.toLocaleString()}</Typography> </TableCell> 
+                        <TableCell>Net: <Typography variant='h7'>{foodgained.toLocaleString()}</Typography> </TableCell> 
                     </TableRow>
                 </Table> 
         </Grid>
@@ -223,7 +244,7 @@ const [errors, setErrors] = useState([])
                         <TableCell>Loyalty: <Typography variant='h7' style={{color: 'green'}}>+{totalloyaltonks.toLocaleString()}</Typography></TableCell> 
                     </TableRow>
                     <TableRow>
-                        <TableCell>Rats: <Typography variant='h7' style={{color: 'green'}}>+{totalbonks.toLocaleString()}</Typography></TableCell> 
+                        <TableCell>Rats: <Typography variant='h7' style={{color: 'green'}} >+{totalbonks.toLocaleString()}</Typography></TableCell> 
                     </TableRow>
                     <TableRow>
                         <TableCell>Weasels: <Typography variant='h7' style={{color: 'green'}}>+{totalweasels.toLocaleString()}</Typography></TableCell> 

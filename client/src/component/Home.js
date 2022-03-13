@@ -40,20 +40,22 @@ const Home = ({user }) => {
   const classes = useStyles()
 
   const [warlord, setWarlord] = useState({});
+  const [race, setRace] = useState({})
+  const [location, setLocation] = useState({})
   
 useEffect(() => {
-fetch(`/warlords/${user.warlord.id}`)
+fetch(`/warlords/13`)
   .then((r) => r.json())
   .then(warlord => {
     setWarlord(warlord)
-    console.log(warlord)})
+    console.log(warlord)
+    setRace(warlord.race)
+    console.log(race)
+    setLocation(warlord.location)
+    console.log(location)
+})
     
 }, []) 
-  function refreshButton(){
-    fetch(`/warlords/${user.warlord.id}`)
-    .then((r) => r.json())
-    .then(warlord =>
-      setWarlord(warlord))}
   return (
     <div>
         
@@ -69,13 +71,13 @@ fetch(`/warlords/${user.warlord.id}`)
 >
 
   <Grid item xs={3}>
-      <Avatar sx={{ width: 128, height: 128 }} variant="square" src={user.warlord.coa_url}/>
+      <Avatar sx={{ width: 200, height: 150 }} variant="square" src={user.warlord.coa_url}/>
 </Grid></Grid>
         
-        <Grid container spacing={2}>
-    <Grid item xs={4}>
+        <Grid container spacing={2} sx={{p:2}} >
+    <Grid sx={{ border: 1, backgroundColor:'lightgrey' }} item xs={4}>
                <Table size="small">
-                   <TableHead>Warlord</TableHead>
+                   <TableHead><Typography variant="h5">Warlord</Typography></TableHead>
                    <TableRow>
                        <TableCell>Turns: {user.warlord.turns.toLocaleString()}</TableCell>
                    </TableRow>
@@ -89,33 +91,33 @@ fetch(`/warlords/${user.warlord.id}`)
                         <TableCell>Population: {user.warlord.workers.toLocaleString()}</TableCell> 
                     </TableRow>
                     <TableRow>
-                        <TableCell>Race: {user.warlord.race_id}</TableCell> 
+                        <TableCell>Race: {race.name}</TableCell> 
                     </TableRow>
                     <TableRow>
-                        <TableCell>Location: {user.warlord.location_id}</TableCell> 
+                        <TableCell>Location: {location.name}</TableCell> 
                     </TableRow>
                 </Table> 
         </Grid>
-        <Grid item xs={4}>
+        <Grid sx={{ border: 1, backgroundColor:'lightgrey' }} item xs={4} >
                <Table size="small">
-                   <TableHead>Agriculture</TableHead>
+                   <TableHead><Typography variant="h5">Agriculture</Typography></TableHead>
                    <TableRow>
                        <TableCell>Food Stores: {user.warlord.food.toLocaleString()}</TableCell>
                    </TableRow>
                    <TableRow>
-                       <TableCell>Est. Production: <Typography variant='h7' style={{color: 'green'}}>+50</Typography> </TableCell>
+                       <TableCell>Est. Production: <Typography variant='h7' style={{color: 'green'}}>+{(65 * (user.warlord.farms ? user.warlord.farms : 1)).toLocaleString()}</Typography> </TableCell>
                     </TableRow>    
                     <TableRow>
-                       <TableCell>Est. Consumption:<Typography variant='h7' style={{color: 'red'}}>-30</Typography> </TableCell>
+                       <TableCell>Est. Consumption:<Typography variant='h7' style={{color: 'red'}}>-{((10+(30 * Math.floor((user.warlord.rats + user.warlord.stoats + user.warlord.weasels + user.warlord.skiffs)/500)))).toLocaleString()}</Typography> </TableCell>
                     </TableRow>    
                     <TableRow>
-                        <TableCell>Net: <Typography variant='h7' style={{color: 'green'}}>+20</Typography> </TableCell> 
+                        <TableCell>Net: <Typography variant='h7' >{((65 * (user.warlord.farms ? user.warlord.farms : 1))-((10+(30 * Math.floor((user.warlord.rats + user.warlord.stoats + user.warlord.weasels + user.warlord.skiffs)/500))))).toLocaleString()}</Typography> </TableCell> 
                     </TableRow>
                 </Table> 
         </Grid>
-        <Grid item xs={4}>
+        <Grid sx={{ border: 1, backgroundColor:'lightgrey' }} item xs={4}>
                <Table size="small">
-                   <TableHead>Relations</TableHead>
+                   <TableHead><Typography variant="h5">Relations</Typography></TableHead>
                    <TableRow>
                        <TableCell>Member of Clan: {warlord.clan ? warlord.clan.abbreviation : "No Clan Detected"} </TableCell>
                    </TableRow>
@@ -139,9 +141,9 @@ fetch(`/warlords/${user.warlord.id}`)
         </Grid>
         <br></br>
         <Grid container spacing={2}>
-    <Grid item xs={4}>
-               <Table size="small">
-                   <TableHead>Land Division</TableHead>
+    <Grid sx={{ border: 1, backgroundColor:'lightgrey' }} item xs={4}>
+               <Table  size="small">
+                   <TableHead><Typography variant="h5">Land Division</Typography></TableHead>
                    <TableRow>
                        <TableCell>Markets: {user.warlord.markets.toLocaleString()}</TableCell>
                     </TableRow>    
@@ -161,7 +163,7 @@ fetch(`/warlords/${user.warlord.id}`)
                        <TableCell>Farms: {user.warlord.farms.toLocaleString()}</TableCell>
                     </TableRow>    
                     <TableRow>
-                       <TableCell>Towers: {user.warlord.markets.toLocaleString()}</TableCell>
+                       <TableCell>Towers: {user.warlord.towers.toLocaleString()}</TableCell>
                     </TableRow>    
                     <TableRow>
                        <TableCell>Unused Land: {user.warlord.freeland.toLocaleString()}</TableCell>
@@ -171,26 +173,26 @@ fetch(`/warlords/${user.warlord.id}`)
                     </TableRow>    
                 </Table> 
         </Grid>
-        <Grid item xs={4}>
+        <Grid sx={{ border: 1, backgroundColor:'lightgrey' }} item xs={4}>
                <Table size="small">
-                   <TableHead>Finances</TableHead>
+                   <TableHead><Typography variant="h5">Income</Typography></TableHead>
                    <TableRow>
                        <TableCell>Money: ${user.warlord.cash.toLocaleString()}</TableCell>
                    </TableRow>
                    <TableRow>
-                       <TableCell>Est. Income: <Typography variant='h7' style={{color: 'green'}}>+$25</Typography></TableCell>
+                       <TableCell>Est. Income: <Typography variant='h7' style={{color: 'green'}}>+${((35 * (user.warlord.markets ? user.warlord.markets : 1))).toLocaleString()}</Typography></TableCell>
                     </TableRow>  
                     <TableRow>
-                       <TableCell>Est. Expenses: <Typography variant='h7' style={{color: 'red'}}>-$10</Typography></TableCell>
+                       <TableCell>Est. Expenses: <Typography variant='h7' style={{color: 'red'}}>-${(10 * Math.floor((user.warlord.rats + user.warlord.stoats + user.warlord.weasels + user.warlord.skiffs)/100)).toLocaleString()}</Typography></TableCell>
                     </TableRow>   
                     <TableRow>
-                        <TableCell>Net: <Typography variant='h7' style={{color: 'green'}}>+$15</Typography> </TableCell> 
+                        <TableCell>Net: <Typography variant='h7'>${(((35 * (user.warlord.markets ? user.warlord.markets : 1))) - (10 * Math.floor((user.warlord.rats + user.warlord.stoats + user.warlord.weasels + user.warlord.skiffs)/100))).toLocaleString()}</Typography> </TableCell> 
                     </TableRow>
                 </Table> 
         </Grid>
-        <Grid item xs={4}>
-               <Table size="small">
-                   <TableHead>Military</TableHead>
+        <Grid sx={{ border: 1, backgroundColor:'lightgrey' }} item xs={4}>
+               <Table  size="small">
+                   <TableHead><Typography variant="h5">Military</Typography></TableHead>
                     <TableRow>
                         <TableCell>Rats: {user.warlord.rats.toLocaleString()}</TableCell> 
                     </TableRow>
@@ -207,16 +209,15 @@ fetch(`/warlords/${user.warlord.id}`)
                        <TableCell>Leaders: {user.warlord.leaders.toLocaleString()}</TableCell>
                     </TableRow>    
                     <TableRow>
-                    <TableCell>Offensive Power: {user.warlord.skiffs.toLocaleString()}</TableCell> 
+                    <TableCell>Offensive Power: {((user.warlord.rats*2)+(user.warlord.weasels*3)+(user.warlord.stoats*5)+(user.warlord.skiffs*5)).toLocaleString()}</TableCell> 
                     </TableRow>
                     <TableRow>
-                        <TableCell>Defensive Power: {user.warlord.skiffs.toLocaleString()}</TableCell> 
+                        <TableCell>Defensive Power: {((user.warlord.rats*1)+(user.warlord.weasels*5)+(user.warlord.stoats*3)+(user.warlord.skiffs*8)).toLocaleString()}</TableCell> 
                     </TableRow>
                     <TableRow>
                         <TableCell>Loyalty: {user.warlord.loyalty.toLocaleString()}</TableCell> 
                     </TableRow>
                 </Table> 
-                <Button onClick={()=>refreshButton()}>Refresh</Button>
         </Grid>
         </Grid>
         </>
