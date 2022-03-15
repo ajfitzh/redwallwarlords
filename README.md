@@ -1,4 +1,8 @@
-# Project Template: React/Rails API
+# Redwall Warlords v2
+-In progress. Currently, user can sign up, login, use turns, create and join clans, view Scores page, attack 2 other Seeded users, and construct buildings
+-To be completed: Public Market, Black Market, Clan Management, Account/Empire Management, Streamlining turn usage and Rails backend
+
+
 
 ## Description
 
